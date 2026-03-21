@@ -22,5 +22,5 @@ class Designation extends Model
         return $query->whereHas('department', function ($q) {
             $q->inCompany();
         });
-    }
+    } 
 }
