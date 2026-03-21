@@ -11,5 +11,25 @@ class Company extends Model
         'email',
         'logo',
         'website',  
-    ]
+    ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'company_user');
+    }
+
+    public function departments()
+    {
+        return $this->hasMany(Department::class);
+    }
+
+    public function desginations()
+    {
+        return $this->throughDepartment()->hasDesginations();
+    }
+    public function getlogourlAttribute()
+    {
+        return $this->logo ? asset('storage/' . $this->logo) : asset('images/default-logo.png');
+    }
+    
 }
