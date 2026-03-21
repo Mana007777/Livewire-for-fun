@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('employee_id')->constrained()->onDelete('cascade');
+            $table->foreignId('designation_id')->constrained()->onDelete('cascade');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->enum('rate_type', ['daily', 'monthly']);
+            $table->decimal('rate', 10, 2);
             $table->timestamps();
         });
     }
