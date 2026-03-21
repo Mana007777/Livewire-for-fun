@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('payrolls', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('company_id')->constrained()->onDelete('cascade');
+            $table->year('year');
+            $table->unsignedTinyInteger('month');
+            $table->unique(['company_id', 'year', 'month']);
             $table->timestamps();
         });
     }
