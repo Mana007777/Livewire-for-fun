@@ -140,19 +140,19 @@ new class extends Component
                 <table class="w-full table-fixed border-separate border-spacing-y-2">
                     <thead>
                         <tr class="text-left">
-                            <th class="px-6 py-3 text-xs font-semibold uppercase tracking-wide text-zinc-500 w-[30%]">
+                            <th class="px-6 py-5 text-xs font-semibold uppercase tracking-wide text-zinc-500 w-[30%]">
                                 Company
                             </th>
-                            <th class="px-6 py-3 text-xs font-semibold uppercase tracking-wide text-zinc-500 w-[25%]">
+                            <th class="px-6 py-5 text-xs font-semibold uppercase tracking-wide text-zinc-500 w-[25%]">
                                 Email
                             </th>
-                            <th class="px-6 py-3 text-xs font-semibold uppercase tracking-wide text-zinc-500 w-[15%]">
+                            <th class="px-6 py-5 text-xs font-semibold uppercase tracking-wide text-zinc-500 w-[15%]">
                                 Phone
                             </th>
-                            <th class="px-6 py-3 text-xs font-semibold uppercase tracking-wide text-zinc-500 w-[18%]">
+                            <th class="px-6 py-5 text-xs font-semibold uppercase tracking-wide text-zinc-500 w-[18%]">
                                 Address
                             </th>
-                            <th class="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wide text-zinc-500 w-[12%]">
+                            <th class="px-6 py-5 text-right text-xs font-semibold uppercase tracking-wide text-zinc-500 w-[12%]">
                                 Actions
                             </th>
                         </tr>
@@ -162,8 +162,7 @@ new class extends Component
                         @forelse ($this->companies as $company)
                         <tr class="bg-white shadow-sm hover:shadow-md transition rounded-xl">
 
-                            {{-- Company --}}
-                            <td class="px-6 py-5 align-middle">
+                            <td class="px-6 py-8 align-middle">
                                 <div class="flex items-center gap-4">
                                     @if ($company->logo)
                                     <img
