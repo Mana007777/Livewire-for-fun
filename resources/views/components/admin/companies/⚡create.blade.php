@@ -28,7 +28,7 @@ new class extends Component
         }
         $this->company->save();
         session()->flash('success', 'Company created successfully.');
-        return $this->redirectIntended('companies.index');
+        return $this->redirectIntended(route('companies.index'));
     }
 };
 ?>

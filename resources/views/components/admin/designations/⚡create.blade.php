@@ -21,7 +21,7 @@ new class extends Component
         $this->validate();
         $this->designation->save();
         session()->flash('success', 'Designation created successfully.');
-        return $this->redirectIntended('designations.index');
+        return $this->redirectIntended(route('designations.index'));
     }
 };
 ?>
