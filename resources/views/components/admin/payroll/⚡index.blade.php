@@ -70,7 +70,7 @@ new class extends Component
     {
         return Payroll::inCompany()->orderBy('year', 'desc')->orderBy('month', 'desc')->paginate(10);
     }
-};
+}; 
 ?>
 
 <div>

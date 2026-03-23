@@ -9,5 +9,11 @@ new class extends Component
 ?>
 
 <div>
-    {{-- The best way to take care of the future is to take care of the present moment. - Thich Nhat Hanh --}}
+    <div class="relative mb-6 w-full">
+        <flux:heading size="xl">Dashboard</flux:heading>
+        <flux:subheading size="lg" class="mb-6">
+            welcome {{ auth()->user()->name }}
+        </flux:subheading>
+        <flux:separator />
+    </div>
 </div>

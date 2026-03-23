@@ -8,11 +8,11 @@ use Livewire\WithPagination;
 
 new class extends Component
 {
-    use WithPagination , WithoutUrlPagination;
+    use WithPagination, WithoutUrlPagination;
     public function delete($id)
     {
         $company = Company::find($id);
-        if($company->logo){
+        if ($company->logo) {
             Storage::disk('public')->delete($company->logo);
         }
         $company->delete();
@@ -26,5 +26,11 @@ new class extends Component
 ?>
 
 <div>
-    {{-- Always remember that you are absolutely unique. Just like everyone else. - Margaret Mead --}}
+    <div class="relative mb-6 w-full">
+        <flux:heading size="xl">Companies</flux:heading>
+        <flux:subheading size="lg" class="mb-6">
+            List of companies 
+        </flux:subheading>
+        <flux:separator />
+    </div>
 </div>
