@@ -9,7 +9,7 @@ new class extends Component
     public function rules()
     {
         return [
-            'department' => 'required|string|max:255',
+            'department.name' => 'required|string|max:255',
         ];
     }
 
@@ -21,6 +21,7 @@ new class extends Component
     public function save()
     {
         $this->validate();
+        $this->department->company_id = session('company_id');
         $this->department->save();
         session()->flash('success', 'Department created successfully.');
         return $this->redirectIntended(route('departments.index'));
