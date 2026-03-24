@@ -5,25 +5,32 @@ use Livewire\Component;
 
 new class extends Component
 {
-    public $department;
+    public Department $department;
+    public $name = '';
+
     public function rules()
     {
         return [
-            'department.name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
         ];
     }
 
     public function mount($id)
     {
-        $this->department = Department::find($id);
+        $this->department = Department::inCompany()->findOrFail($id);
+        $this->name = $this->department->name;
     }
 
     public function save()
     {
         $this->validate();
+
+        $this->department->name = $this->name;
         $this->department->save();
+
         session()->flash('success', 'Department updated successfully.');
-        return $this->redirectIntended(route('departments.index'));
+
+        return redirect()->route('departments.index');
     }
 };
 ?>
@@ -31,7 +38,6 @@ new class extends Component
 <div class="w-full px-4 py-5 sm:px-6 lg:px-8">
     <div class="w-full space-y-6">
 
-        {{-- Header --}}
         <div class="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
             <div class="min-w-0">
                 <flux:heading size="xl" class="tracking-tight text-zinc-900">
@@ -55,18 +61,20 @@ new class extends Component
         <flux:separator />
 
         @if (session('success'))
-        <div
-            x-data="{ show: true }"
-            x-init="setTimeout(() => show = false, 3000)"
-            x-show="show"
-            x-transition
-            style="display: none;"
-            class="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700">
-            {{ session('success') }}
-        </div>
+            <div
+                x-data="{ show: true }"
+                x-init="setTimeout(() => show = false, 3000)"
+                x-show="show"
+                x-transition
+                style="display: none;"
+                class="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700"
+            >
+                {{ session('success') }}
+            </div>
         @endif
 
         <form wire:submit.prevent="save" class="grid grid-cols-1 gap-6 xl:grid-cols-12">
+
             <div class="xl:col-span-8">
                 <flux:card class="border border-zinc-200 shadow-sm">
                     <div class="border-b border-zinc-200 px-5 py-4 sm:px-6">
@@ -78,6 +86,7 @@ new class extends Component
 
                     <div class="px-5 py-5 sm:px-6">
                         <div class="grid grid-cols-1 gap-5">
+
                             <div>
                                 <label class="mb-2 block text-sm font-medium text-zinc-700">
                                     Department Name
@@ -87,12 +96,14 @@ new class extends Component
                                     type="text"
                                     wire:model.blur="name"
                                     placeholder="Enter department name"
-                                    class="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm text-zinc-900 outline-none transition focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/10">
+                                    class="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm text-zinc-900 outline-none transition focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/10"
+                                >
 
                                 @error('name')
-                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
+
                         </div>
                     </div>
                 </flux:card>
@@ -100,6 +111,7 @@ new class extends Component
 
             <div class="xl:col-span-4">
                 <div class="space-y-6">
+
                     <flux:card class="border border-zinc-200 shadow-sm">
                         <div class="border-b border-zinc-200 px-5 py-4">
                             <flux:heading size="lg">Record Info</flux:heading>
@@ -107,26 +119,38 @@ new class extends Component
 
                         <div class="space-y-4 px-5 py-5">
                             <div class="rounded-xl bg-zinc-50 px-4 py-3">
-                                <p class="text-xs font-medium uppercase tracking-wide text-zinc-500">Department ID</p>
-                                <p class="mt-1 text-sm font-semibold text-zinc-900">#{{ $department->id }}</p>
+                                <p class="text-xs font-medium uppercase tracking-wide text-zinc-500">
+                                    Department ID
+                                </p>
+                                <p class="mt-1 text-sm font-semibold text-zinc-900">
+                                    #{{ $department->id }}
+                                </p>
                             </div>
 
                             <div class="rounded-xl bg-zinc-50 px-4 py-3">
-                                <p class="text-xs font-medium uppercase tracking-wide text-zinc-500">Status</p>
+                                <p class="text-xs font-medium uppercase tracking-wide text-zinc-500">
+                                    Status
+                                </p>
                                 <div class="mt-2">
-                                    <flux:badge color="emerald">Ready to update</flux:badge>
+                                    <flux:badge color="emerald">
+                                        Ready to update
+                                    </flux:badge>
                                 </div>
                             </div>
                         </div>
                     </flux:card>
+
                 </div>
             </div>
 
             <div class="xl:col-span-12">
                 <flux:card class="border border-zinc-200 shadow-sm">
                     <div class="flex flex-col gap-3 px-5 py-4 sm:px-6 md:flex-row md:items-center md:justify-between">
+
                         <div>
-                            <p class="text-sm font-semibold text-zinc-900">Save your changes</p>
+                            <p class="text-sm font-semibold text-zinc-900">
+                                Save your changes
+                            </p>
                             <p class="text-sm text-zinc-500">
                                 Make sure the department information is correct before updating.
                             </p>
@@ -139,14 +163,24 @@ new class extends Component
                                 </flux:button>
                             </a>
 
-                            <flux:button variant="primary" type="submit" wire:loading.attr="disabled">
-                                <span wire:loading.remove wire:target="save">Update Department</span>
-                                <span wire:loading wire:target="save">Saving...</span>
+                            <flux:button
+                                variant="primary"
+                                type="submit"
+                                wire:loading.attr="disabled"
+                            >
+                                <span wire:loading.remove wire:target="save">
+                                    Update Department
+                                </span>
+                                <span wire:loading wire:target="save">
+                                    Saving...
+                                </span>
                             </flux:button>
                         </div>
+
                     </div>
                 </flux:card>
             </div>
+
         </form>
     </div>
-</div>
+</div>  
