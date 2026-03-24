@@ -79,11 +79,11 @@
                 icon-trailing="chevron-up-down" />
 
             <flux:menu>
-                @foreach (auth()->user()->companies as $company)
                 <flux:menu.radio.group>
-                    @livewire('company-switch', ['company' => $company], key($company->id))
+                    @foreach (auth()->user()->companies as $company)
+                    @livewire('company-switch', ['company' => $company], key('company-'.$company->id))
+                    @endforeach
                 </flux:menu.radio.group>
-                @endforeach
             </flux:menu>
         </flux:dropdown>
 

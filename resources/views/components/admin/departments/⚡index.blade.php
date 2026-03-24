@@ -7,20 +7,28 @@ use Livewire\WithPagination;
 
 new class extends Component
 {
-    use WithPagination  , WithoutUrlPagination;
+    use WithPagination, WithoutUrlPagination;
 
     public function delete($id)
     {
-        Department::find($id)->delete();
+        $department = Department::find($id);
+
+        if (! $department) {
+            session()->flash('error', 'Department not found.');
+            return;
+        }
+
+        $department->delete();
+
         session()->flash('success', 'Department deleted successfully.');
     }
-    public function getCompaniesProperty()
+
+    public function getDepartmentsProperty()
     {
         return Department::inCompany()->paginate(5);
     }
 };
 ?>
-
 <div>
     {{-- Simplicity is the essence of happiness. - Cedric Bledsoe --}}
 </div>
