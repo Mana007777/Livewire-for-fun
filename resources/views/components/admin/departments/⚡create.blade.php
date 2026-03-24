@@ -77,12 +77,12 @@ new class extends Component
 
                                 <input
                                     type="text"
-                                    wire:model="department.name"
+                                    wire:model="name"
                                     placeholder="Enter department name"
                                     class="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm text-zinc-900 outline-none transition focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/10"
                                 >
 
-                                @error('department.name')
+                                @error('name')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
