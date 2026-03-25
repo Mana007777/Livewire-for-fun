@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 
 <head>
+    @livewireStyles
     @include('partials.head')
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
@@ -163,6 +164,7 @@
     {{ $slot }}
 
     @fluxScripts
+    @livewireScripts
 </body>
 
 </html>
