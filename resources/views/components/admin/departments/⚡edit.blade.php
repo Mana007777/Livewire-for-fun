@@ -40,13 +40,6 @@
 
         public function save()
         {
-            logger('department save start', [
-                'department_id' => $this->departmentId,
-                'company_id_session' => session('company_id'),
-                'company_id_component' => $this->companyId,
-                'name' => $this->name,
-            ]);
-
             $this->validate();
 
             $updated = Department::query()
