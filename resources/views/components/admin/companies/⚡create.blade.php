@@ -49,7 +49,6 @@ new class extends Component
 <div class="w-full px-4 py-5 sm:px-6 lg:px-8">
     <div class="w-full space-y-6">
 
-        {{-- Header --}}
         <div class="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
             <div class="min-w-0">
                 <flux:heading size="xl" class="tracking-tight text-zinc-900">
@@ -73,7 +72,6 @@ new class extends Component
         <flux:separator />
 
         <form wire:submit.prevent="save" class="grid grid-cols-1 gap-6 xl:grid-cols-12">
-            {{-- Main Form --}}
             <div class="xl:col-span-8">
                 <flux:card class="border border-zinc-200 shadow-sm">
                     <div class="border-b border-zinc-200 px-5 py-4 sm:px-6">
@@ -86,7 +84,6 @@ new class extends Component
                     <div class="px-5 py-5 sm:px-6">
                         <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
 
-                            {{-- Name --}}
                             <div class="md:col-span-2">
                                 <label class="mb-2 block text-sm font-medium text-zinc-700">
                                     Company Name
@@ -101,7 +98,6 @@ new class extends Component
                                 @enderror
                             </div>
 
-                            {{-- Email --}}
                             <div>
                                 <label class="mb-2 block text-sm font-medium text-zinc-700">
                                     Email Address
@@ -116,7 +112,6 @@ new class extends Component
                                 @enderror
                             </div>
 
-                            {{-- Website --}}
                             <div>
                                 <label class="mb-2 block text-sm font-medium text-zinc-700">
                                     Website
@@ -136,11 +131,9 @@ new class extends Component
                 </flux:card>
             </div>
 
-            {{-- Side Panel --}}
             <div class="xl:col-span-4">
                 <div class="space-y-6">
 
-                    {{-- Logo Card --}}
                     <flux:card class="border border-zinc-200 shadow-sm">
                         <div class="border-b border-zinc-200 px-5 py-4">
                             <flux:heading size="lg">Company Logo</flux:heading>
@@ -187,7 +180,6 @@ new class extends Component
                         </div>
                     </flux:card>
 
-                    {{-- Meta Card --}}
                     <flux:card class="border border-zinc-200 shadow-sm">
                         <div class="border-b border-zinc-200 px-5 py-4">
                             <flux:heading size="lg">Record Info</flux:heading>
@@ -212,7 +204,6 @@ new class extends Component
                 </div>
             </div>
 
-            {{-- Bottom Actions --}}
             <div class="xl:col-span-12">
                 <flux:card class="border border-zinc-200 shadow-sm">
                     <div class="flex flex-col gap-3 px-5 py-4 sm:px-6 md:flex-row md:items-center md:justify-between">
