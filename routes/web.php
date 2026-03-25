@@ -52,6 +52,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::prefix('payments')->name('payments.')->group(function () {
             Route::livewire('/', 'admin.payments.index')->name('index');
+            Route::livewire('/create', 'admin.payments.create')->name('create');
             Route::livewire('/{id}/show', 'admin.payments.show')->name('show');
         });
     });

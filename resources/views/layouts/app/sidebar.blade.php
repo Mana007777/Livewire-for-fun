@@ -59,11 +59,16 @@
                     </flux:sidebar.item>
                 </flux:sidebar.group>
                 <flux:sidebar.group :heading="__('Accounting')" class="grid">
-                    <flux:sidebar.item icon="users" :href="route('payrolls.index')" :current="request()->routeIs('payrolls.*')" wire:navigate>
+                    <flux:sidebar.item icon="document-text" :href="route('payrolls.index')" :current="request()->routeIs('payrolls.*')" wire:navigate>
                         {{ __('List of payrolls') }}
                     </flux:sidebar.item>
-                    <flux:sidebar.item icon="users" :href="route('payments.index')" :current="request()->routeIs('payments.*')" wire:navigate>
-                        {{ __('Payroll Payment') }}
+
+                    <flux:sidebar.item icon="banknotes" :href="route('payments.index')" :current="request()->routeIs('payments.index')" wire:navigate>
+                        {{ __('List of payments') }}
+                    </flux:sidebar.item>
+
+                    <flux:sidebar.item icon="plus" :href="route('payments.create')" :current="request()->routeIs('payments.create')" wire:navigate>
+                        {{ __('Create Payment') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.group>
