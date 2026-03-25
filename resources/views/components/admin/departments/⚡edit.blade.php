@@ -38,13 +38,17 @@
                 ->firstOrFail();
         }
 
-        public function save()
+        public function save(): mixed
         {
             $this->validate();
 
+            $this->department->update([
+                'name' => $this->name,
+            ]);
+
             session()->flash('success', 'Department updated successfully.');
 
-            return $this->redirectIntended(route('departments.index'));
+            return $this->redirectIntended(route('departments.index'), navigate: true);
         }
     };
     ?>
