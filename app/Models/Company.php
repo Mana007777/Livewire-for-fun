@@ -23,9 +23,9 @@ class Company extends Model
         return $this->hasMany(Department::class);
     }
 
-    public function desginations()
+    public function designations()
     {
-        return $this->throughDepartment()->hasDesginations();
+        return $this->throughDepartment()->hasDesignations();
     }
     public function getlogourlAttribute()
     {
